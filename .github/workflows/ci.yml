@@ -46,14 +46,14 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: devops/task-definition.dev.json
-        container-name: renda-fixa-dev
-        image:  ${{ steps.login-ecr.outputs.registry }}/renda-fixa-dev:${{ steps.increment-git-tag.outputs.git-tag }}
+        container-name: rendafixa
+        image:  ${{ steps.login-ecr.outputs.registry }}/rendafixa:${{ steps.increment-git-tag.outputs.git-tag }}
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: renda-fixa-dev
-        cluster: crewhu-development
+        service: teste003
+        cluster: renda-fixa-dev
         wait-for-service-stability: true
 
   
