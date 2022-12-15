@@ -35,7 +35,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: contact-api-dev
+        ECR_REPOSITORY: rendafixa
         IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -46,13 +46,13 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: devops/task-definition.dev.json
-        container-name: contact-api-dev
-        image:  ${{ steps.login-ecr.outputs.registry }}/contact-api-dev:${{ steps.increment-git-tag.outputs.git-tag }}
+        container-name: rendafixa
+        image:  ${{ steps.login-ecr.outputs.registry }}/rendafixa:${{ steps.increment-git-tag.outputs.git-tag }}
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: contact-api-dev
+        service: rendafixa
         cluster: crewhu-development
         wait-for-service-stability: true
 
