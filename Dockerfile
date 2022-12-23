@@ -14,12 +14,12 @@ COPY . .
 
 ENV CGO_ENABLED=0 GOOS=linux GOARCH=amd64
 
-RUN go build -ldflags="-s -w" -o cigo ./src
+RUN go build -ldflags="-s -w" -o app ./src
 
 FROM scratch
 
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+# COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
-COPY --from=builder ["/build/cigo", "/"]
+COPY --from=builder ["/build/app", "/"]
 
-ENTRYPOINT ["/cigo"]
+ENTRYPOINT ["/app"]
