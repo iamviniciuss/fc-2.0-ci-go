@@ -2,7 +2,10 @@ module github.com/Vinicius-Santos-da-Silva/fc-2.0-ci-go
 
 go 1.18
 
-require github.com/gofiber/fiber/v2 v2.40.1
+require (
+	github.com/gofiber/fiber/v2 v2.40.1
+	github.com/gofiber/template v1.7.3
+)
 
 require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
