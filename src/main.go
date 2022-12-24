@@ -7,6 +7,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/template/html"
 )
 
 func main() {
@@ -14,7 +15,11 @@ func main() {
 	fmt.Println("Starting app 009")
 	go running()
 
-	app := fiber.New()
+	engine := html.New("./src/views", ".html")
+
+	app := fiber.New(fiber.Config{
+		Views: engine,
+	})
 
 	app.Use(cors.New())
 
@@ -40,6 +45,13 @@ func main() {
 		fmt.Println("health /")
 		c.Status(200)
 		return c.Send([]byte("<h1>health 2</h1>"))
+	})
+
+	app.Get("/index", func(c *fiber.Ctx) error {
+		// Render index template
+		return c.Render("test1", fiber.Map{
+			"Title": "Hello, World!",
+		})
 	})
 
 	log.Fatal(app.Listen(":80"))
