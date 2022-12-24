@@ -8,12 +8,16 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/template/html"
+
+	"github.com/Vinicius-Santos-da-Silva/fc-2.0-ci-go/src/infra"
 )
 
 func main() {
 
 	fmt.Println("Starting app 009")
 	go running()
+
+	infra.GetSecret()
 
 	engine := html.New("./src/views", ".html")
 
@@ -38,13 +42,13 @@ func main() {
 	app.Get("/", func(c *fiber.Ctx) error {
 		fmt.Println("Request /")
 		c.Status(200)
-		return c.Send([]byte("<h1>Hello 222</h1>"))
+		return c.Send([]byte("<h1>Hello 34</h1>"))
 	})
 
 	app.Get("/health", func(c *fiber.Ctx) error {
 		fmt.Println("health /")
 		c.Status(200)
-		return c.Send([]byte("<h1>health 2</h1>"))
+		return c.Send([]byte("<h1>health 34</h1>"))
 	})
 
 	app.Get("/index", func(c *fiber.Ctx) error {
