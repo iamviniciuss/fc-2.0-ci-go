@@ -8,16 +8,12 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/template/html"
-
-	"github.com/Vinicius-Santos-da-Silva/fc-2.0-ci-go/src/infra"
 )
 
 func main() {
 
 	fmt.Println("Starting app 009")
 	go running()
-
-	infra.GetSecret()
 
 	engine := html.New("./src/views", ".html")
 
