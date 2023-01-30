@@ -26,6 +26,15 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
+    - name: Swagger
+      run: | 
+        go get github.com/swaggo/swag/cmd/swag
+        export PATH=$PATH:$(go env GOPATH)/bin
+        swag init -g src/main.go --output src/docs
+
+      env:
+        GOPATH: ${{ runner.workspace }}
+    
     - name: Automatic Tagging of Releases
       id: increment-git-tag
       run: |
