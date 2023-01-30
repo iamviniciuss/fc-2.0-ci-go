@@ -36,6 +36,7 @@ jobs:
       run: | 
         export PATH=$PATH:$(go env GOPATH)/bin
         go get -v -u github.com/swaggo/swag/cmd/swag
+        export PATH=$(go env GOPATH)/bin:$PATH
         ls
         swag init -g src/main.go --output src/docs
 
