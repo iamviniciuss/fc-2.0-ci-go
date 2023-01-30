@@ -34,8 +34,8 @@ jobs:
 
     - name: Swagger
       run: | 
-        go get github.com/swaggo/swag/cmd/swag
         export PATH=$PATH:$(go env GOPATH)/bin
+        go install github.com/swaggo/swag/cmd/swag
         swag init -g src/main.go --output src/docs
 
       env:
