@@ -34,11 +34,8 @@ jobs:
 
     - name: Swagger
       run: | 
-        export PATH=$PATH:$(go env GOPATH)/bin
-        go get -v -u github.com/swaggo/swag/cmd/swag
-        export PATH=$(go env GOPATH)/bin:$PATH
-        ls
-        swag init -g src/main.go --output src/docs
+        go run $GOPATH/pkg/mod/github.com/swaggo/swag@v*/cmd/swag/main.go init -g ./src/main.go --output ./src/docs
+
 
       env:
         GOPATH: ${{ runner.workspace }}
