@@ -34,6 +34,7 @@ jobs:
 
     - name: Swagger
       run: | 
+        go get github.com/swaggo/swag/cmd/swag
         go run $GOPATH/pkg/mod/github.com/swaggo/swag@v*/cmd/swag/main.go init -g ./src/main.go --output ./src/docs
 
 
